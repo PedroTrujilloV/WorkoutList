@@ -39,11 +39,14 @@ class DataSource {
     private var cancellable: AnyCancellable?
     private weak var delegate:DataSourceDelegate?
     private var dataSourceList:Array<ExerciseViewModel> = []
+    private static var _categories:Dictionary<Int,String> = [:]
+    
     
     init(delegate:DataSourceDelegate) {
         guard let url = URL(string: urlString) else {print("\n ⚠️ DataSource.init(): There was a problem getting URL from: \(urlString)"); return}
         load(url: url)
         self.delegate = delegate
+        DataSource.retrieveCategories(nil)
     }
     
     public func loadNext(){
@@ -86,52 +89,83 @@ class DataSource {
         self.cancellable?.cancel()
     }
     
-    public static func retrieveImageModel(with id:Int, completion: @escaping (ImageModel) -> Void ) {
+    public static func retrieveImageModel(with id:Int, completion: @escaping (ImageModel?) -> Void ) {
         let stringURL = "https://wger.de/api/v2/exerciseimage/\(id)/thumbnails/?is_main=True&language=2&format=json"
-        guard let url = URL(string: stringURL) else { print("\n ⚠️ DataSource.retrieveThumbnailImageURLString(): There was a problem getting URL from: \(stringURL)")
+        DataSource.retrieve(with: id, stringURL: stringURL, completion: completion)
+    }
+    
+    public static func retrieveCategory(by id:Int, completion: @escaping (String)->Void ){
+        if let category = DataSource._categories[id] {
+            completion(category)
+        } else {
+            let stringURL = "https://wger.de/api/v2/exercisecategory/?format=json"
+            let completionHandler: (CategoryResult?)->Void = { result in
+                let results = result?.results
+                let categoryDictionary = results?.reduce([Int: String]()) { (dict, category) -> [Int: String] in
+                    var dict = dict
+                    dict[category.id] = category.name
+                    return dict
+                }
+                if let categoryDictionary = categoryDictionary {
+                    DataSource._categories = categoryDictionary
+                    if let categoryName = DataSource._categories[id] {
+                        completion(categoryName)
+                    }
+                }
+            }
+            DataSource.retrieve(with: id, stringURL: stringURL, completion: completionHandler)
+        }
+    }
+    
+    
+    private static func retrieve<T:Codable>(with id:Int,stringURL:String, completion: @escaping (T?) -> Void ) {
+        guard let url = URL(string: stringURL) else { print("\n ⚠️ DataSource.retrieve(): There was a problem getting URL from: \(stringURL)")
             return
         }
 
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
-                print("\n ⚠️ DataSource.retrieveThumbnailImageURLString() dataTask Error: \(error.localizedDescription)")
+                print("\n ⚠️ DataSource.retrieve() dataTask Error: \(error.localizedDescription)")
                 return
             }
             guard let httpResponse = response as? HTTPURLResponse,
                 (200...299).contains(httpResponse.statusCode) else {
-                print("\n ⚠️ DataSource.retrieveThumbnailImageURLString() dataTask response: \(String(describing: response))")
+                print("\n ⚠️ DataSource.retrieve() dataTask response: \(String(describing: response))")
                 return
             }
-            guard let data = data else { print("\n ⚠️ DataSource.retrieveThumbnailImageURLString() dataTask data error: \(String(describing: data))"); return }
+            guard let data = data else { print("\n ⚠️ DataSource.retrieve() dataTask data error: \(String(describing: data))"); return }
             do {
-                let imageModel = try JSONDecoder().decode(ImageModel.self, from: data)
-                completion(imageModel)
+                let model = try JSONDecoder().decode(T.self, from: data)
+                completion(model)
             } catch let DecodingError.dataCorrupted(context) {
                 print("\n ⚠️ dataCorrupted. Context:")
                 print(context)
-                completion(ImageModel(thumbnail: ThumbnailModel(url: "")) )
+                completion(nil)
             } catch let DecodingError.keyNotFound(key, context) {
                 print("\n ⚠️ Key '\(key)' not found:", context.debugDescription)
                 print("\n codingPath:", context.codingPath)
-                completion(ImageModel(thumbnail: ThumbnailModel(url: "")) )
+                completion(nil)
             } catch let DecodingError.valueNotFound(value, context) {
                 print("\n ⚠️ Value '\(value)' not found:", context.debugDescription)
                 print("\n codingPath:", context.codingPath)
-                completion(ImageModel(thumbnail: ThumbnailModel(url: "")) )
+                completion(nil)
             } catch let DecodingError.typeMismatch(type, context)  {
                 print("\n ⚠️ Type '\(type)' mismatch:", context.debugDescription)
                 print("\n codingPath:", context.codingPath)
-                completion(ImageModel(thumbnail: ThumbnailModel(url: "")) )
+                completion(nil)
             } catch {
                 print("\n ⚠️ error: ", error)
-                completion(ImageModel(thumbnail: ThumbnailModel(url: "")) )
+                completion(nil)
             }
         }
         task.resume()
     }
     
+    
+    
     deinit  {
         cancellable?.cancel()
     }
+    
     
 }
