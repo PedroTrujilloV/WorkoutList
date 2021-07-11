@@ -10,6 +10,7 @@ import Foundation
 
 struct ImageModel: Codable {
     var thumbnail:ThumbnailModel
+    var original: String?
 }
 
 

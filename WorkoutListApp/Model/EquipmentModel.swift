@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct EquipmentModel: Codable {
+    var id: Int
+    var name: String
+}
