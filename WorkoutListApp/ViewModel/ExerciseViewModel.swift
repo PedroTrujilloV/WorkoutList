@@ -53,6 +53,10 @@ class ExerciseViewModel {
         return model.category ?? -1
     }
     
+    var equipmen: Array<Int> {
+        return model.equipment ?? []
+    }
+    
     public func getImageURL(completion: @escaping (URL) -> Void) {
         let thumbnail = self.thumbnail
         DataSource.retrieveImageModel(with: id) { [weak self] imageModel in
@@ -72,16 +76,52 @@ class ExerciseViewModel {
         }
     }
     
-    public func  getOtherInfo( completion: @escaping (String)-> Void) {
-        var equipment = ""
-        
-        self.getCategoryName { categoryName in
-            DispatchQueue.main.async {
-                let text = "Category: " + categoryName + "\nEquipment: " + equipment
-                completion(text)
+    public func getEquipment(completion: @escaping ([String])-> Void ){
+        let group = DispatchGroup()
+        var equipmentNames:Array<String> = []
+        for i in equipmen {
+            group.enter()
+            DataSource.retrieveEquipment(by: i) { equipmenName in
+                equipmentNames.append(equipmenName)
+                group.leave()
             }
-            
         }
+        group.notify(qos: DispatchQoS.default, flags: DispatchWorkItemFlags.assignCurrentContext, queue: DispatchQueue.main) {
+            print("\n\n\n>>>> qos equipmentNames: \(equipmentNames) <<< \n\n\n")
+        }
+        completion(equipmentNames)
+    }
+    
+    public func  getOtherInfo( completion: @escaping (String)-> Void) {
+        self.getEquipment { [weak self] equipmentNames in
+            let equipment = self?.generateEquipmentText(with: equipmentNames) ?? ""
+            self?.getCategoryName { categoryName in
+                DispatchQueue.main.async {
+                    let text = "Category: " + categoryName + "\nEquipment: " + equipment
+                    completion(text)
+                }
+            }
+        }
+    }
+    
+    private func generateEquipmentText(with equipmentNames:Array<String>) -> String {
+        var equipment = ""
+        var i = 0
+        if equipmentNames.isEmpty {
+            return "Unknow"
+        }
+        if equipmentNames.count == 1 {
+            return equipmentNames[0]
+        }
+        for tool in equipmentNames {
+            if i == equipmentNames.count - 1 {
+                equipment = equipment + "and " + tool + "."
+            } else {
+                equipment = equipment +  tool + ", "
+            }
+            i += 1
+        }
+        return equipment
     }
     
     init(model:ExerciseModel) {

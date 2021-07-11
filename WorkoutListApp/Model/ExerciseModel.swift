@@ -18,7 +18,7 @@ struct ExerciseModel: Codable {
     var category:Int?
 //    var muscles:Array<Int>?
 //    var muscles_secondary:Array<Int>?
-//    var equipment:Array<Int>?
+    var equipment:Array<Int>?
 //    var language:Int
 //    var license:Int
 //    var license_author:String?
