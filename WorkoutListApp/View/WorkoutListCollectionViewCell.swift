@@ -23,7 +23,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
     private let stackView:UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.vertical
-        stackView.distribution  = UIStackView.Distribution.fillEqually
+        stackView.distribution  = .fill
         stackView.alignment = UIStackView.Alignment.center
         stackView.spacing  = 8.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
     private let textStackView:UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.vertical
-        stackView.distribution  = UIStackView.Distribution.fill
+        stackView.distribution  = .fill
         stackView.alignment = UIStackView.Alignment.center
         stackView.spacing   = 3.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +56,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text  = "No name"
         label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
         label.textColor = UIColor.nameTextColor
         label.numberOfLines = 2
         return label
@@ -95,37 +95,36 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
     
     func setup(){
         setupStackView()
+        setupImageViewConstraints()
+        setupTextViewConstraints()
         setupIcons()
     }
        
     private func setupStackView(){
-        setupImageViewConstraints()
-        setupTextViewConstraints()
-
+        
+        self.addSubview(stackView)
         stackView.addArrangedSubview(thumbnailImageView)
         stackView.addArrangedSubview(textStackView)
-
-        self.addSubview(stackView)
         activityIndicator.startAnimating()
         
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     
     private func setupImageViewConstraints(){
-        thumbnailImageView.heightAnchor.constraint(equalToConstant: self.frame.width).isActive = true
-        thumbnailImageView.widthAnchor.constraint(equalToConstant: self.frame.width).isActive = true
+        thumbnailImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.5).isActive = true
+        thumbnailImageView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
     }
     
     private func setupTextViewConstraints(){
-        nameLabel.widthAnchor.constraint(equalToConstant: self.frame.width - 6).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-        
-        descriptionLabel.widthAnchor.constraint(equalToConstant: self.frame.width - 8).isActive = true
-        descriptionLabel.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-
         textStackView.addArrangedSubview(nameLabel)
         textStackView.addArrangedSubview(descriptionLabel)
+        
+        nameLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
+        descriptionLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
+        descriptionLabel.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.5).isActive = true
     }
     
     private func setupIcons(){

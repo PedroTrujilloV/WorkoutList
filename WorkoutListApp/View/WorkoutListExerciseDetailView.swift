@@ -24,7 +24,7 @@ class WorkoutListExerciseDetailView: UIView {
         return imageV
     }()
     
-    private var nameLable: UILabel =  {
+    private var nameLabel: UILabel =  {
         let label = UILabel()
         label.text  = "No Name"
         label.textAlignment = .center
@@ -119,7 +119,7 @@ class WorkoutListExerciseDetailView: UIView {
     }
     
     private func setupTextStackView() {
-        textStackView.addArrangedSubview(nameLable)
+        textStackView.addArrangedSubview(nameLabel)
         textStackView.addArrangedSubview(descriptionLabel)
         textStackView.addArrangedSubview(otherInfo)
         textStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
@@ -131,8 +131,8 @@ class WorkoutListExerciseDetailView: UIView {
     }
        
     private func setupTextConstraints(){
-        nameLable.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
-        nameLable.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.2).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.2).isActive = true
         
         descriptionLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
         descriptionLabel.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.45).isActive = true
@@ -143,7 +143,7 @@ class WorkoutListExerciseDetailView: UIView {
 
     
     public func set(from viewModel:ExerciseViewModel) {
-        nameLable.text = viewModel.name
+        nameLabel.text = viewModel.name
         descriptionLabel.attributedText = viewModel.description.htmlToAttributedString
         viewModel.getOtherInfo { [weak self] otherInfoString in
             DispatchQueue.main.async { [weak self] in
