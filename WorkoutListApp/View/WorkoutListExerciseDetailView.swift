@@ -20,6 +20,7 @@ class WorkoutListExerciseDetailView: UIView {
         imageV.layer.cornerRadius = 5
         imageV.layer.masksToBounds = true
         imageV.image = UIImage(named: "logo")
+        imageV.translatesAutoresizingMaskIntoConstraints = false
         return imageV
     }()
     
@@ -27,7 +28,7 @@ class WorkoutListExerciseDetailView: UIView {
         let label = UILabel()
         label.text  = "No Name"
         label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)//UIFont(name: "Roboto-Bold", size: 24)
+        label.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
         label.textColor = UIColor.nameTextColor
         label.numberOfLines = 2
         return label
@@ -37,11 +38,11 @@ class WorkoutListExerciseDetailView: UIView {
         let textView = UITextView()
         textView.text  = "No description"
         textView.textAlignment = .center
-        textView.font = UIFont(name: "AvenirNext-Regular", size: 14)
+        textView.font = UIFont(name: "AvenirNext-Regular", size: 15)
         textView.textColor = UIColor.descriptionTextColor
         textView.isEditable = false
         textView.isSelectable = false
-        textView.isScrollEnabled = false
+        textView.isScrollEnabled = true
         return textView
     }()
     
@@ -58,9 +59,9 @@ class WorkoutListExerciseDetailView: UIView {
     private var textStackView :UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.vertical
-        stackView.distribution  = UIStackView.Distribution.equalSpacing
+        stackView.distribution  = .fill
         stackView.alignment = UIStackView.Alignment.center
-        stackView.spacing   = 14.0
+        stackView.spacing   = 8.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -68,9 +69,9 @@ class WorkoutListExerciseDetailView: UIView {
     private var stackView :UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.vertical
-        stackView.distribution  = UIStackView.Distribution.equalSpacing
+        stackView.distribution  = .fill
         stackView.alignment = UIStackView.Alignment.center
-        stackView.spacing   = 12.0
+        stackView.spacing   = 8.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -94,6 +95,9 @@ class WorkoutListExerciseDetailView: UIView {
     
     private func setup(){
         setupStackView()
+        setupTextStackView()
+        setupImageViewConstraints()
+        setupTextConstraints()
         setupStyle()
     }
     
@@ -102,38 +106,41 @@ class WorkoutListExerciseDetailView: UIView {
     }
        
     private func setupStackView(){
-        setupImageViewConstraints()
-        setupTextConstraints()
-        setupTextStackView()
-        
+
+        self.addSubview(stackView)
         stackView.addArrangedSubview(thumbnailImageView)
         stackView.addArrangedSubview(textStackView)
-        self.addSubview(stackView)
         
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-    }
-    
-    private func setupImageViewConstraints(){
-        let proportion:CGFloat = 0.5
-        thumbnailImageView.heightAnchor.constraint(equalToConstant: self.frame.width * proportion).isActive = true
-        thumbnailImageView.widthAnchor.constraint(equalToConstant: self.frame.width * proportion).isActive = true
-    }
-       
-    private func setupTextConstraints(){
-        nameLable.widthAnchor.constraint(equalToConstant: self.frame.width-20).isActive = true
-        nameLable.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
-        descriptionLabel.widthAnchor.constraint(equalToConstant: self.frame.width-30).isActive = true
-        descriptionLabel.heightAnchor.constraint(equalToConstant: 70.0).isActive = true
-        otherInfo.widthAnchor.constraint(equalToConstant: self.frame.width-25).isActive = true
-//        otherInfo.heightAnchor.constraint(equalToConstant: 95.0).isActive = true
+        stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 55.0).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30.0).isActive = true
+        stackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
     }
     
     private func setupTextStackView() {
         textStackView.addArrangedSubview(nameLable)
         textStackView.addArrangedSubview(descriptionLabel)
         textStackView.addArrangedSubview(otherInfo)
+        textStackView.widthAnchor.constraint(equalTo: stackView.widthAnchor).isActive = true
     }
+    
+    private func setupImageViewConstraints(){
+        thumbnailImageView.heightAnchor.constraint(equalTo: stackView.heightAnchor, multiplier: 0.4).isActive = true
+        thumbnailImageView.widthAnchor.constraint(equalTo: stackView.widthAnchor, multiplier: 0.9).isActive = true
+    }
+       
+    private func setupTextConstraints(){
+        nameLable.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
+        nameLable.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.2).isActive = true
+        
+        descriptionLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
+        descriptionLabel.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.45).isActive = true
+        
+        otherInfo.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
+        otherInfo.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.35).isActive = true
+    }
+
     
     public func set(from viewModel:ExerciseViewModel) {
         nameLable.text = viewModel.name
@@ -143,7 +150,6 @@ class WorkoutListExerciseDetailView: UIView {
                 self?.otherInfo.text = otherInfoString
             }
         }
-        
         bind(viewModel)
     }
     

@@ -70,6 +70,8 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         textView.textColor = UIColor.descriptionTextColor
         textView.isEditable = false
         textView.isSelectable = false
+        textView.isUserInteractionEnabled = true
+        textView.isMultipleTouchEnabled = true
         textView.isScrollEnabled = false
         return textView
     }()
@@ -172,6 +174,8 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         thumbnailImageView.image = defaultImage
         self.likeStateImageView.isHidden = true
+        self.descriptionLabel.text = ""
+        self.nameLabel.text = ""
         self.cancel()
     }
 }
