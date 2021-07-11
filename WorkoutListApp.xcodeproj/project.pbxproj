@@ -39,6 +39,18 @@
 		EBD595A1269A547300685998 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5959D269A453600685998 /* ImageModel.swift */; };
 		EBD595A2269A547500685998 /* ThumbnailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5959F269A45F400685998 /* ThumbnailModel.swift */; };
 		EBD595A4269A634000685998 /* String+HTMLToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595A3269A634000685998 /* String+HTMLToString.swift */; };
+		EBD595A8269A76EC00685998 /* WorkoutListExerciseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595A7269A76EC00685998 /* WorkoutListExerciseDetailViewController.swift */; };
+		EBD595AA269A796600685998 /* WorkoutListExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595A9269A796600685998 /* WorkoutListExerciseDetailView.swift */; };
+		EBD595AC269A83DA00685998 /* CategoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595AB269A83DA00685998 /* CategoryResult.swift */; };
+		EBD595AE269A845500685998 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595AD269A845500685998 /* CategoryModel.swift */; };
+		EBD595AF269A94BD00685998 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595AD269A845500685998 /* CategoryModel.swift */; };
+		EBD595B0269A94C000685998 /* CategoryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595AB269A83DA00685998 /* CategoryResult.swift */; };
+		EBD595B2269A9DBF00685998 /* DataSource+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B1269A9DBF00685998 /* DataSource+Generics.swift */; };
+		EBD595B3269AA04900685998 /* DataSource+Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B1269A9DBF00685998 /* DataSource+Generics.swift */; };
+		EBD595B5269AA84B00685998 /* EquipmentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B4269AA84B00685998 /* EquipmentResult.swift */; };
+		EBD595B7269AA8A100685998 /* EquipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B6269AA8A100685998 /* EquipmentModel.swift */; };
+		EBD595B8269AAAD600685998 /* EquipmentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B4269AA84B00685998 /* EquipmentResult.swift */; };
+		EBD595B9269AAAD900685998 /* EquipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B6269AA8A100685998 /* EquipmentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +103,13 @@
 		EBD5959D269A453600685998 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		EBD5959F269A45F400685998 /* ThumbnailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailModel.swift; sourceTree = "<group>"; };
 		EBD595A3269A634000685998 /* String+HTMLToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTMLToString.swift"; sourceTree = "<group>"; };
+		EBD595A7269A76EC00685998 /* WorkoutListExerciseDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListExerciseDetailViewController.swift; sourceTree = "<group>"; };
+		EBD595A9269A796600685998 /* WorkoutListExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutListExerciseDetailView.swift; sourceTree = "<group>"; };
+		EBD595AB269A83DA00685998 /* CategoryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResult.swift; sourceTree = "<group>"; };
+		EBD595AD269A845500685998 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		EBD595B1269A9DBF00685998 /* DataSource+Generics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSource+Generics.swift"; sourceTree = "<group>"; };
+		EBD595B4269AA84B00685998 /* EquipmentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentResult.swift; sourceTree = "<group>"; };
+		EBD595B6269AA8A100685998 /* EquipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD5956E2699239E00685998 /* DataSource.swift */,
+				EBD595B1269A9DBF00685998 /* DataSource+Generics.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -200,6 +220,10 @@
 				EBD595762699281200685998 /* Result.swift */,
 				EBD5959D269A453600685998 /* ImageModel.swift */,
 				EBD5959F269A45F400685998 /* ThumbnailModel.swift */,
+				EBD595AB269A83DA00685998 /* CategoryResult.swift */,
+				EBD595AD269A845500685998 /* CategoryModel.swift */,
+				EBD595B4269AA84B00685998 /* EquipmentResult.swift */,
+				EBD595B6269AA8A100685998 /* EquipmentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD59581269A281C00685998 /* WorkoutListCollectionViewController.swift */,
+				EBD595A7269A76EC00685998 /* WorkoutListExerciseDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -218,6 +243,7 @@
 				EBD59596269A317300685998 /* Layout */,
 				EBD59586269A2E9F00685998 /* WorkoutListCollectionView.swift */,
 				EBD59588269A2EE900685998 /* WorkoutListCollectionViewCell.swift */,
+				EBD595A9269A796600685998 /* WorkoutListExerciseDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -382,23 +408,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBD59587269A2E9F00685998 /* WorkoutListCollectionView.swift in Sources */,
+				EBD595AC269A83DA00685998 /* CategoryResult.swift in Sources */,
 				EBD5958E269A2F5100685998 /* UIColor+Palette.swift in Sources */,
 				EBD59595269A314100685998 /* ImageCache.swift in Sources */,
 				EBD59594269A314100685998 /* ImageLoader.swift in Sources */,
 				EBD59598269A31C700685998 /* WorkoutListCollectionViewFlowLayout.swift in Sources */,
 				EBD5953E269922AA00685998 /* ViewController.swift in Sources */,
+				EBD595B5269AA84B00685998 /* EquipmentResult.swift in Sources */,
 				EBD59589269A2EE900685998 /* WorkoutListCollectionViewCell.swift in Sources */,
 				EBD595752699250F00685998 /* ExerciseModel.swift in Sources */,
 				EBD5959A269A32D200685998 /* CGFloat+FlowLayout.swift in Sources */,
 				EBD595732699245C00685998 /* ExerciseViewModel.swift in Sources */,
 				EBD5953A269922AA00685998 /* AppDelegate.swift in Sources */,
 				EBD5959E269A453600685998 /* ImageModel.swift in Sources */,
+				EBD595AE269A845500685998 /* CategoryModel.swift in Sources */,
 				EBD595772699281200685998 /* Result.swift in Sources */,
 				EBD5956F2699239E00685998 /* DataSource.swift in Sources */,
 				EBD595A0269A45F400685998 /* ThumbnailModel.swift in Sources */,
 				EBD5959C269A349A00685998 /* Int+FlowLayout.swift in Sources */,
+				EBD595B2269A9DBF00685998 /* DataSource+Generics.swift in Sources */,
 				EBD59584269A299B00685998 /* WorkoutListCollectionViewModel.swift in Sources */,
+				EBD595B7269AA8A100685998 /* EquipmentModel.swift in Sources */,
 				EBD59582269A281C00685998 /* WorkoutListCollectionViewController.swift in Sources */,
+				EBD595A8269A76EC00685998 /* WorkoutListExerciseDetailViewController.swift in Sources */,
+				EBD595AA269A796600685998 /* WorkoutListExerciseDetailView.swift in Sources */,
 				EBD5958D269A2F5100685998 /* UIImage+ImageCache.swift in Sources */,
 				EBD59593269A314100685998 /* ImageCacheTypeProtocol.swift in Sources */,
 				EBD5953C269922AA00685998 /* SceneDelegate.swift in Sources */,
@@ -410,11 +443,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBD595B9269AAAD900685998 /* EquipmentModel.swift in Sources */,
+				EBD595B0269A94C000685998 /* CategoryResult.swift in Sources */,
 				EBD595A2269A547500685998 /* ThumbnailModel.swift in Sources */,
 				EBD595792699323F00685998 /* ExerciseViewModel.swift in Sources */,
 				EBD595A1269A547300685998 /* ImageModel.swift in Sources */,
 				EBD5957B26993A6700685998 /* Result.swift in Sources */,
+				EBD595B8269AAAD600685998 /* EquipmentResult.swift in Sources */,
 				EBD5957826992EA700685998 /* DataSource.swift in Sources */,
+				EBD595B3269AA04900685998 /* DataSource+Generics.swift in Sources */,
+				EBD595AF269A94BD00685998 /* CategoryModel.swift in Sources */,
 				EBD59551269922AC00685998 /* WorkoutListAppTests.swift in Sources */,
 				EBD5957A269938C500685998 /* ExerciseModel.swift in Sources */,
 			);
