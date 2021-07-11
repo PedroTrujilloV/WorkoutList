@@ -23,7 +23,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
     private let stackView:UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.vertical
-        stackView.distribution  = UIStackView.Distribution.fillProportionally
+        stackView.distribution  = UIStackView.Distribution.fillEqually
         stackView.alignment = UIStackView.Alignment.center
         stackView.spacing  = 8.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
     private let textStackView:UIStackView = {
         let stackView = UIStackView()
         stackView.axis  = NSLayoutConstraint.Axis.vertical
-        stackView.distribution  = UIStackView.Distribution.fillEqually
+        stackView.distribution  = UIStackView.Distribution.fill
         stackView.alignment = UIStackView.Alignment.center
         stackView.spacing   = 3.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,13 +62,17 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.text  = "No description"
-        label.textAlignment = .center
-        label.font = UIFont(name: "AvenirNext-Regular", size: 11)
-        label.textColor = UIColor.descriptionTextColor
-        return label
+    private var descriptionLabel: UITextView = {
+        let textView = UITextView()
+        textView.text  = "No description"
+        textView.textAlignment = .center
+        textView.font = UIFont(name: "AvenirNext-Regular", size: 11)
+        textView.textColor = UIColor.descriptionTextColor
+//        textView.isHidden = true // I'm sorry but this
+        textView.isEditable = false
+        textView.isSelectable = false
+        textView.isScrollEnabled = false
+        return textView
     }()
     
     override init(frame: CGRect) {
@@ -135,7 +139,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         
     public func set(from viewModel:  ExerciseViewModel) {
         nameLabel.text = viewModel.name
-        descriptionLabel.text = viewModel.description
+        descriptionLabel.attributedText = viewModel.description.htmlToAttributedString
         bindImage(viewModel)
     }
     

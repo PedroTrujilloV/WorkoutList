@@ -36,10 +36,12 @@ class ExerciseViewModel {
     //https://wger.de/api/v2/exerciseimage/167/?format=json&language=2 // full image
     
     public func getImageURL(completion: @escaping (URL) -> Void) {
+        let thumbnail = self.thumbnail
         DataSource.retrieveImageModel(with: id) { [weak self] imageModel in
             self?.imageModel = imageModel
-            guard let url = URL(string: self!.thumbnail) else {
-                print("\n ⚠️ ExerciseViewModel.getImageURL(): There was a problem getting URL from: \(self!.thumbnail)")
+            
+            guard let url = URL(string: thumbnail) else {
+                print("\n ⚠️ ExerciseViewModel.getImageURL(): There was a problem getting URL from: \(thumbnail)")
                 return
             }
             completion(url)

@@ -43,15 +43,18 @@ extension WorkoutListCollectionViewController: WorkoutListCollectionViewControll
 extension WorkoutListCollectionViewController { // MARK: UICollectionViewDataSource
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("\n\n🟢 viewModel.dataSourceList.count: \(viewModel.dataSourceList.count)")
         return viewModel.dataSourceList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WorkoutListCollectionViewCell.reuserIdentifier, for: indexPath) as? WorkoutListCollectionViewCell {
+        print("\n\n🟢 indexPath.item: \(indexPath.item) viewModel.dataSourceList.count - 1 \(viewModel.dataSourceList.count - 1)")
+        if indexPath.item == viewModel.dataSourceList.count - 1 { // last cell
+            print("\n\n🟢 paginate")
+            viewModel.paginate()
+        }
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WorkoutListCollectionViewCell.reuserIdentifier, for: indexPath) as?
+            WorkoutListCollectionViewCell {
             let vm = viewModel.dataSourceList[indexPath.item]
-            print("\n\n🟢 vm: \(vm)")
-
             cell.set(from: vm)
             return cell
         } else {

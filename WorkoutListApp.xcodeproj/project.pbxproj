@@ -38,6 +38,7 @@
 		EBD595A0269A45F400685998 /* ThumbnailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5959F269A45F400685998 /* ThumbnailModel.swift */; };
 		EBD595A1269A547300685998 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5959D269A453600685998 /* ImageModel.swift */; };
 		EBD595A2269A547500685998 /* ThumbnailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD5959F269A45F400685998 /* ThumbnailModel.swift */; };
+		EBD595A4269A634000685998 /* String+HTMLToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595A3269A634000685998 /* String+HTMLToString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		EBD5959B269A349A00685998 /* Int+FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+FlowLayout.swift"; sourceTree = "<group>"; };
 		EBD5959D269A453600685998 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		EBD5959F269A45F400685998 /* ThumbnailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailModel.swift; sourceTree = "<group>"; };
+		EBD595A3269A634000685998 /* String+HTMLToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTMLToString.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 				EBD59599269A32D200685998 /* CGFloat+FlowLayout.swift */,
 				EBD5958B269A2F5100685998 /* UIImage+ImageCache.swift */,
 				EBD5959B269A349A00685998 /* Int+FlowLayout.swift */,
+				EBD595A3269A634000685998 /* String+HTMLToString.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				EBD5958D269A2F5100685998 /* UIImage+ImageCache.swift in Sources */,
 				EBD59593269A314100685998 /* ImageCacheTypeProtocol.swift in Sources */,
 				EBD5953C269922AA00685998 /* SceneDelegate.swift in Sources */,
+				EBD595A4269A634000685998 /* String+HTMLToString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

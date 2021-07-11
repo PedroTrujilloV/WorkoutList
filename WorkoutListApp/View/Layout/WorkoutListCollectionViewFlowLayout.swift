@@ -14,9 +14,9 @@ class WorkoutListCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsets(top: 10, left: CGFloat.FlowLayout.Spacing.normal, bottom: 10, right: CGFloat.FlowLayout.Spacing.normal)
         self.minimumInteritemSpacing = CGFloat.FlowLayout.Spacing.normal
         self.minimumLineSpacing = CGFloat.FlowLayout.Spacing.normal
-        let extraSpace = ( CGFloat( Int.FlowLayout.columns.triple ) * CGFloat.FlowLayout.Spacing.normal ) + CGFloat.FlowLayout.Spacing.normal
-        let sideLenght = ( frame.width - extraSpace ) / CGFloat.FlowLayout.Spacing.big
-        let textAreaHeight = sideLenght / 2
+        let extraSpace = ( CGFloat( Int.FlowLayout.columns.double ) * CGFloat.FlowLayout.Spacing.normal ) + CGFloat.FlowLayout.Spacing.normal
+        let sideLenght = ( frame.width - extraSpace ) / CGFloat.FlowLayout.Spacing.normal
+        let textAreaHeight = sideLenght // 2
         self.itemSize = CGSize(width: sideLenght, height: sideLenght + textAreaHeight)
     }
     

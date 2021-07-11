@@ -18,12 +18,17 @@ protocol DataSourceDelegate:AnyObject {
 
 class DataSource {
     
-    private let urlString:String = "https://wger.de/api/v2/exercise/?format=json&language=2&limit=20&offset=40"//"https://wger.de/api/v2/exercise/?language=2&format=json"
+    private let urlString:String = "https://wger.de/api/v2/exercise/?language=2&format=json"
     private let urlProcessingQueue = DispatchQueue(label: "urlProcessingQueue")
     private var _currentResult:Result?
     public var next:String {
         get{
             return currentResult?.next ?? "none"
+        }
+    }
+    public var totalItems: Int {
+        get {
+            return currentResult?.count ?? 0
         }
     }
     public var currentResult:Result? {
@@ -72,7 +77,8 @@ class DataSource {
             }, receiveValue: { [weak self]  result in
                 DispatchQueue.main.async { [weak self] in
                     self?._currentResult = result
-                    self?.dataSourceList = result.results.map({ExerciseViewModel(model: $0)})
+                    let results = result.results.map({ExerciseViewModel(model: $0)})
+                    self?.dataSourceList.append(contentsOf: results)
                     self?.delegate?.dataSourceDidLoad(dataSource: self?.dataSourceList ?? [])
                 }
             })

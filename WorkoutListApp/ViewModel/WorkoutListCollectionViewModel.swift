@@ -20,6 +20,16 @@ class WorkoutListCollectionViewModel: NSObject {
         dataSource = DataSource(delegate: self)
     }
     
+    public func paginate(){
+        guard let dataSource = dataSource else {
+            print("\n ⚠️ WorkoutListCollectionViewModel.paginate(), dataSource = nil, not possible load next batch")
+            return
+        }
+        if dataSource.totalItems > dataSourceList.count {
+            dataSource.loadNext()
+        }
+    }
+    
 }
 
 extension WorkoutListCollectionViewModel: DataSourceDelegate {
