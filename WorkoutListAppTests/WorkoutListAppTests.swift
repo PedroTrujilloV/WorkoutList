@@ -108,13 +108,31 @@ class WorkoutListAppTests: XCTestCase, DataSourceDelegate {
         let givenExpectation = expectation(description: "test3DataSourceRetrieveImageModel expectation")
         //when
         DataSource.retrieveImageModel(with: givenId) { imageModel in
-             let thumbnail = imageModel.thumbnail.url
+            let thumbnail = imageModel?.thumbnail.url
             
             //then
             XCTAssertTrue(givenImageStringURL == thumbnail)
             givenExpectation.fulfill()
         }
         waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        }
+    }
+    
+    func test4DataSourceRetrieveCategories(){
+        let givenId = 14
+        let givencCategoryName = "Calves"
+        let givenExpectation = expectation(description: "test4DataSourceRetrieveCategories expectation")
+        
+        //when
+        DataSource.retrieveCategory(by: givenId) { categoryName in
+            //then
+            XCTAssertTrue(givencCategoryName == categoryName)
+            givenExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 10) { error in
             if let error = error {
                 XCTFail("waitForExpectationsWithTimeout errored: \(error)")
             }
