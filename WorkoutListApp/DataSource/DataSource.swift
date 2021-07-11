@@ -46,7 +46,7 @@ class DataSource {
         guard let url = URL(string: urlString) else {print("\n ⚠️ DataSource.init(): There was a problem getting URL from: \(urlString)"); return}
         load(url: url)
         self.delegate = delegate
-        DataSource.retrieveCategories(nil)
+        DataSource.retrieveCategory(nil)
     }
     
     public func loadNext(){
@@ -94,9 +94,11 @@ class DataSource {
         DataSource.retrieve(with: id, stringURL: stringURL, completion: completion)
     }
     
-    public static func retrieveCategory(by id:Int, completion: @escaping (String)->Void ){
+    public static func retrieveCategory(by id:Int = -1,_ completion: ( (String)->Void )? ){
         if let category = DataSource._categories[id] {
-            completion(category)
+            if let completion = completion {
+                completion(category)
+            }
         } else {
             let stringURL = "https://wger.de/api/v2/exercisecategory/?format=json"
             let completionHandler: (CategoryResult?)->Void = { result in
@@ -109,58 +111,15 @@ class DataSource {
                 if let categoryDictionary = categoryDictionary {
                     DataSource._categories = categoryDictionary
                     if let categoryName = DataSource._categories[id] {
-                        completion(categoryName)
+                        if let completion = completion {
+                            completion(categoryName)
+                        }
                     }
                 }
             }
             DataSource.retrieve(with: id, stringURL: stringURL, completion: completionHandler)
         }
     }
-    
-    
-    private static func retrieve<T:Codable>(with id:Int,stringURL:String, completion: @escaping (T?) -> Void ) {
-        guard let url = URL(string: stringURL) else { print("\n ⚠️ DataSource.retrieve(): There was a problem getting URL from: \(stringURL)")
-            return
-        }
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("\n ⚠️ DataSource.retrieve() dataTask Error: \(error.localizedDescription)")
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse,
-                (200...299).contains(httpResponse.statusCode) else {
-                print("\n ⚠️ DataSource.retrieve() dataTask response: \(String(describing: response))")
-                return
-            }
-            guard let data = data else { print("\n ⚠️ DataSource.retrieve() dataTask data error: \(String(describing: data))"); return }
-            do {
-                let model = try JSONDecoder().decode(T.self, from: data)
-                completion(model)
-            } catch let DecodingError.dataCorrupted(context) {
-                print("\n ⚠️ dataCorrupted. Context:")
-                print(context)
-                completion(nil)
-            } catch let DecodingError.keyNotFound(key, context) {
-                print("\n ⚠️ Key '\(key)' not found:", context.debugDescription)
-                print("\n codingPath:", context.codingPath)
-                completion(nil)
-            } catch let DecodingError.valueNotFound(value, context) {
-                print("\n ⚠️ Value '\(value)' not found:", context.debugDescription)
-                print("\n codingPath:", context.codingPath)
-                completion(nil)
-            } catch let DecodingError.typeMismatch(type, context)  {
-                print("\n ⚠️ Type '\(type)' mismatch:", context.debugDescription)
-                print("\n codingPath:", context.codingPath)
-                completion(nil)
-            } catch {
-                print("\n ⚠️ error: ", error)
-                completion(nil)
-            }
-        }
-        task.resume()
-    }
-    
     
     
     deinit  {
