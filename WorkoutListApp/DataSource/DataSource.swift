@@ -40,13 +40,15 @@ class DataSource {
     private weak var delegate:DataSourceDelegate?
     private var dataSourceList:Array<ExerciseViewModel> = []
     private static var _categories:Dictionary<Int,String> = [:]
-    
+    private static var _equipments:Dictionary<Int,String> = [:]
+
     
     init(delegate:DataSourceDelegate) {
         guard let url = URL(string: urlString) else {print("\n ⚠️ DataSource.init(): There was a problem getting URL from: \(urlString)"); return}
         load(url: url)
         self.delegate = delegate
         DataSource.retrieveCategory(nil)
+        DataSource.retrieveEquipment(nil)
     }
     
     public func loadNext(){
@@ -113,6 +115,33 @@ class DataSource {
                     if let categoryName = DataSource._categories[id] {
                         if let completion = completion {
                             completion(categoryName)
+                        }
+                    }
+                }
+            }
+            DataSource.retrieve(with: id, stringURL: stringURL, completion: completionHandler)
+        }
+    }
+    
+    public static func retrieveEquipment(by id:Int = -1,_ completion: ( (String)->Void )? ){
+        if let equipment = DataSource._equipments[id] {
+            if let completion = completion {
+                completion(equipment)
+            }
+        } else {
+            let stringURL = "https://wger.de/api/v2/equipment/?format=json"
+            let completionHandler: (EquipmentResult?)->Void = { result in
+                let results = result?.results
+                let equipmentDictionary = results?.reduce([Int: String]()) { (dict, equipment) -> [Int: String] in
+                    var dict = dict
+                    dict[equipment.id] = equipment.name
+                    return dict
+                }
+                if let equipmentDictionary = equipmentDictionary {
+                    DataSource._equipments = equipmentDictionary
+                    if let equipmentName = DataSource._equipments[id] {
+                        if let completion = completion {
+                            completion(equipmentName)
                         }
                     }
                 }

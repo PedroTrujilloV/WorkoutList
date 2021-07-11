@@ -138,6 +138,24 @@ class WorkoutListAppTests: XCTestCase, DataSourceDelegate {
             }
         }
     }
+    
+    func test5DataSourceRetrieveEquipment(){
+        let givenId = 8
+        let givenEquipmentName = "Bench"
+        let givenExpectation = expectation(description: "test5DataSourceRetrieveEquipment expectation")
+        
+        //when
+        DataSource.retrieveEquipment(by: givenId) { equipmentName in
+            //then
+            XCTAssertTrue(givenEquipmentName == equipmentName)
+            givenExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 10) { error in
+            if let error = error {
+                XCTFail("waitForExpectationsWithTimeout errored: \(error)")
+            }
+        }
+    }
 
 
 }
