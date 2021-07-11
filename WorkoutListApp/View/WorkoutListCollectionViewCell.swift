@@ -68,7 +68,6 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         textView.textAlignment = .center
         textView.font = UIFont(name: "AvenirNext-Regular", size: 11)
         textView.textColor = UIColor.descriptionTextColor
-//        textView.isHidden = true // I'm sorry but this
         textView.isEditable = false
         textView.isSelectable = false
         textView.isScrollEnabled = false

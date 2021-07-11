@@ -47,9 +47,7 @@ extension WorkoutListCollectionViewController { // MARK: UICollectionViewDataSou
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("\n\n🟢 indexPath.item: \(indexPath.item) viewModel.dataSourceList.count - 1 \(viewModel.dataSourceList.count - 1)")
         if indexPath.item == viewModel.dataSourceList.count - 1 { // last cell
-            print("\n\n🟢 paginate")
             viewModel.paginate()
         }
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WorkoutListCollectionViewCell.reuserIdentifier, for: indexPath) as?
@@ -64,23 +62,23 @@ extension WorkoutListCollectionViewController { // MARK: UICollectionViewDataSou
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let offerVM = viewModel.dataSourceList[indexPath.row]
-//        let detailVC = MusicAlbumDetailViewController(offerVM)
-//        presentDetailViewController(detailVC)
+        let exerciseVM = viewModel.dataSourceList[indexPath.row]
+        let detailVC = WorkoutListExerciseDetailViewController(exerciseVM)
+        presentDetailViewController(detailVC)
         
     }
     
-//    private func presentDetailViewController(_ detailVC: MusicAlbumDetailViewController) {
-//       let nc = UINavigationController(rootViewController: detailVC)
-//       nc.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//       nc.navigationBar.shadowImage = UIImage()
-//       nc.navigationBar.isTranslucent = true
-//       nc.view.backgroundColor = UIColor.clear
-//
-//       self.present(nc, animated: true) {
-//           //do something
-//       }
-//    }
+    private func presentDetailViewController(_ detailVC: WorkoutListExerciseDetailViewController) {
+       let nc = UINavigationController(rootViewController: detailVC)
+       nc.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+       nc.navigationBar.shadowImage = UIImage()
+       nc.navigationBar.isTranslucent = true
+       nc.view.backgroundColor = UIColor.clear
+
+       self.present(nc, animated: true) {
+           //do something
+       }
+    }
 }
 
 
