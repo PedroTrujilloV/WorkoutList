@@ -3,35 +3,35 @@
 ![pic1](ScreenShot1.png)
 ![pic1](ScreenShot2.png)
 
-This app that displays a list of workout exercises in a beautiful double collum collection view in portratit mode.  When tapping in any exercise collection cell, the app will display a description view of this contained more detailed information about this, image with higher resolution (if availabe), complete description text, category and equipment. 
+This app displays a list of workout exercises in a beautiful double collum collection view in portrait mode. When tapping in any exercise collection cell, the app will display a description view, which contains more detailed information about this, image with higher resolution (if available), complete description text, category, and equipment. 
 
-### Technologies and APIsused:
+### Technologies and APIs used:
 
-·         MVVM
-·         UICollectionView
-·         UICollectionViewCell
-·         UIViewController
-·         UICollectionViewFlowLayout
-·         URLSession
-·         RESTful JSON API
-·         Image caching 
-·         Pagination
-·         Generics
-·         Delegation
-·         Callbacks 
-·         Dark mode dynamic colors 
-·         Unit Testing
-·         etc.
+·     MVVM
+·     UICollectionView
+·     UICollectionViewCell
+·     UIViewController
+·     UICollectionViewFlowLayout
+·     URLSession
+·     RESTful JSON API
+·     Image caching 
+·     Pagination
+·     Generics
+·     Delegation
+·     Callbacks 
+·     Dark mode dynamic colors 
+·     Unit Testing
+·     etc.
 
 ### Instructions for running the app:
-Necessary to have Xcode installed before. Download the repository, once downloaded open the xcodeproj file and run it. If the build fase fails, make sure you have a simulator selected, or a real device ( iPhone or iPad ) connected, also make sure you have configured the team and the bundle identifier. 
+Necessary to have Xcode installed before. Download the repository, once downloaded open the xcodeproj file, and run it. If the build phase fails, make sure you have a simulator selected, or a real device ( iPhone or iPad ) connected, also make sure you have configured the team and the bundle identifier. 
 
-### Peding or nice to have:
+### Pending or nice to have:
 
-·         More unit testing
-·         UI testing
-·         Packages for common components
-·         Test and improve the image caching 
+·     More unit testing
+·     UI testing
+·     Packages for common components
+·     Test and improve the image caching 
 
 
 
