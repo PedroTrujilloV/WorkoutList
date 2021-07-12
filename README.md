@@ -2,6 +2,7 @@
 
 ![pic1](ScreenShot1.png)
 ![pic1](ScreenShot2.png)
+
 This app that displays a list of workout exercises in a beautiful double collum collection view in portratit mode.  When tapping in any exercise collection cell, the app will display a description view of this contained more detailed information about this, image with higher resolution (if availabe), complete description text, category and equipment. 
 
 ### Technologies and APIsused:
