@@ -10,15 +10,3 @@ import Foundation
 struct ThumbnailModel: Codable {
     var url:String
 }
-
-/* example:
- "thumbnail":{
-    "url":"/media/exercise-images/177/Seated-leg-curl-1.png.80x80_q85.jpg",
-    "settings":{
-       "size":[
-          80,
-          80
-       ]
-    }
- }
- **/

@@ -144,7 +144,8 @@ class WorkoutListExerciseDetailView: UIView {
     
     public func set(from viewModel:ExerciseViewModel) {
         nameLabel.text = viewModel.name
-        descriptionLabel.attributedText = viewModel.description.htmlToAttributedString
+        descriptionLabel.attributedText = viewModel.description.htmlToDynamicAttributedString(color: .descriptionTextColor,
+                                                                                              font: UIFont(name: "AvenirNext-Regular", size: 15)!)
         viewModel.getOtherInfo { [weak self] otherInfoString in
             DispatchQueue.main.async { [weak self] in
                 self?.otherInfo.text = otherInfoString

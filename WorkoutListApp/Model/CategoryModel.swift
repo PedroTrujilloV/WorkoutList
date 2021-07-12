@@ -11,11 +11,3 @@ struct CategoryModel: Codable {
     var id: Int
     var name: String
 }
-
-/**
- 
- {
-     "id": 10,
-     "name": "Abs"
- },
- */

@@ -124,7 +124,7 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         
         nameLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
         descriptionLabel.widthAnchor.constraint(equalTo: textStackView.widthAnchor, multiplier: 0.9).isActive = true
-        descriptionLabel.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.5).isActive = true
+        descriptionLabel.heightAnchor.constraint(equalTo: textStackView.heightAnchor, multiplier: 0.6).isActive = true
     }
     
     private func setupIcons(){
@@ -139,7 +139,8 @@ class WorkoutListCollectionViewCell: UICollectionViewCell {
         
     public func set(from viewModel:  ExerciseViewModel) {
         nameLabel.text = viewModel.name
-        descriptionLabel.attributedText = viewModel.description.htmlToAttributedString
+        descriptionLabel.attributedText = viewModel.description.htmlToDynamicAttributedString(color: .descriptionTextColor,
+                                                                                              font: UIFont(name: "AvenirNext-Regular", size: 11)!)
         bindImage(viewModel)
     }
     

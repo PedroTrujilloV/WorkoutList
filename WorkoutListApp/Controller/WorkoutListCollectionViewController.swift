@@ -31,6 +31,18 @@ class WorkoutListCollectionViewController: UICollectionViewController  {
         super.viewWillTransition(to: size, with: coordinator)
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+
+//        let userInterfaceStyle = traitCollection.userInterfaceStyle // Either .unspecified, .light, or .dark
+//        switch traitCollection.userInterfaceStyle {
+//              case .light, .unspecified:
+//                
+//              case .dark:
+//                  // dark mode detected
+//          }
+     }
 
 }
 
