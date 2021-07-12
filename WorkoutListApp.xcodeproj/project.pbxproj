@@ -51,6 +51,7 @@
 		EBD595B7269AA8A100685998 /* EquipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B6269AA8A100685998 /* EquipmentModel.swift */; };
 		EBD595B8269AAAD600685998 /* EquipmentResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B4269AA84B00685998 /* EquipmentResult.swift */; };
 		EBD595B9269AAAD900685998 /* EquipmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD595B6269AA8A100685998 /* EquipmentModel.swift */; };
+		EBD595BB269BD8A800685998 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = EBD595BA269BD8A800685998 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		EBD595B1269A9DBF00685998 /* DataSource+Generics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSource+Generics.swift"; sourceTree = "<group>"; };
 		EBD595B4269AA84B00685998 /* EquipmentResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentResult.swift; sourceTree = "<group>"; };
 		EBD595B6269AA8A100685998 /* EquipmentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentModel.swift; sourceTree = "<group>"; };
+		EBD595BA269BD8A800685998 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 		EBD5952D269922AA00685998 = {
 			isa = PBXGroup;
 			children = (
+				EBD595BA269BD8A800685998 /* README.md */,
 				EBD59538269922AA00685998 /* WorkoutListApp */,
 				EBD5954F269922AC00685998 /* WorkoutListAppTests */,
 				EBD5955A269922AC00685998 /* WorkoutListAppUITests */,
@@ -381,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBD595BB269BD8A800685998 /* README.md in Resources */,
 				EBD59546269922AC00685998 /* LaunchScreen.storyboard in Resources */,
 				EBD59543269922AC00685998 /* Assets.xcassets in Resources */,
 			);
