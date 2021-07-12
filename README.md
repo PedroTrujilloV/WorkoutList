@@ -22,7 +22,13 @@ This app that displays a list of workout exercises in a beautiful double collum 
 ### Instructions for running the app:
 Necessary to have Xcode installed before. Download the repository, once downloaded open the xcodeproj file and run it. If the build fase fails, make sure you have a simulator selected, or a real device ( iPhone or iPad ) connected, also make sure you have configured the team and the bundle identifier. 
 
-### Peding 
+### Peding or nice to have:
+
+·         More unit testing
+·         UI testing
+·         Packages for common components
+·         Test and improve the image caching 
+
 
 
 ## iOS Homework Assessment
